@@ -8,7 +8,7 @@ const Button = ({ text, onClick, color }) => {
 }
 
 Button.defaultProps = {
-    text: 'Add',
+    text: 'Show',
     color: 'blue',
 }
 
