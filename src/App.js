@@ -14,15 +14,7 @@ const App = () => {
     toggleForm: false
   })
 
-  const [val, setVal] = useState({
-    text: ''
-  })
 
-
-  // Input change
-  const changeHandler = (e) => {
-    setVal({ text: e.target.value })
-  }
 
   // Open To Do form
   const onToggleForm = () => {
@@ -46,16 +38,12 @@ const App = () => {
   }
 
   // Add task
-  const addTaskHandler = () => {
-    let task = { id: tasks.length + 1, text: val.text, date: new Date(), reminder: false }
+  const addTaskHandler = (text, day, reminder) => {
+    let task = { id: tasks.length + 1, text: text, date: day, reminder: reminder }
 
-    let newTasks = tasks.concat()
-
-    newTasks.push(task)
-
-    setTimeout(() => {
-      setTasks({ tasks: newTasks })
-    }, 1000);
+    // console.log('Task', task);
+    // console.log(tasks);
+    setTasks([...tasks, task])
   }
 
   return (
@@ -64,7 +52,7 @@ const App = () => {
         onClick={onToggleForm}
         toggleForm={toggle.toggleForm} />
       {toggle.toggleForm
-        ? <Form onChange={changeHandler} addHandler={addTaskHandler} />
+        ? <Form addHandler={addTaskHandler} />
         : null
       }
 
